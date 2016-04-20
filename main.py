@@ -2,15 +2,19 @@ import Tkinter
 
 class PartName(Tkinter.Tk):
     def __init__(self,parent):
+        #Call Super's Constructor
         Tkinter.Tk.__init__(self,parent)
+        #Store Reference To Parent
         self.parent = parent
-        self.initialize()
+        #Initialize GUI
+        self.initializeWindow()
         
-    def initialize(self):
-        self.grid() #Create Grid Layout Manager
-        
-        label = Tkinter.Label(self,anchor="w",fg="white",bg="blue")
-        label.grid(column=0,row=0,columnspan=2,sticky="ew")
+    def initializeWindow(self):
+        #Create Grid Layout Manager
+        self.grid() 
+        #Create Title Label
+        self.titleLabel = Tkinter.Label(self,anchor="w",text="PART NAME GEN",fg="white",bg="blue")
+        self.titleLabel.grid(column=0,row=0,columnspan=2,sticky="ew")
         
         self.entry = Tkinter.Entry(self)
         self.entry.grid(column=0,row=1,sticky="ew")
@@ -32,5 +36,5 @@ class PartName(Tkinter.Tk):
         
 if __name__ == "__main__":
     app = PartName(None)
-    app.title("Part Name")
+    app.title("Part Name Generator")
     app.mainloop()
