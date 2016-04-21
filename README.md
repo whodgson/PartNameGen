@@ -1,2 +1,13 @@
-# PartNameGen
-A tool that allows Kerbal Space Program modders to quickly generate part names and descriptions.
+# Part Name Gen
+A Kerbal Space Program Modding Tool
+
+## Purpose
+
+Part Name Gen allows you to:
+* Generate random part names.
+* Generate random part descriptions.
+
+Currently supported part types:
+* Engine
+* LF Tank
+* LFO Tank
