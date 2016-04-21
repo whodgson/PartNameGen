@@ -1,4 +1,5 @@
 import Tkinter
+from Tkinter import *
 
 class PartName(Tkinter.Tk):
     def __init__(self,parent):
@@ -35,6 +36,17 @@ class PartName(Tkinter.Tk):
         #Create Generate Button
         self.generateButton = Tkinter.Button(self,text=u"Generate",command=self.onButtonClick)
         self.generateButton.grid(column=0,row=3,columnspan=2,sticky="ew")
+        #Create Output Frame
+        self.outputFrame = Frame(self)
+        self.outputFrame.grid(column=0,row=4,columnspan=2,rowspan=1,stick="w")
+        #Create Output Field
+        self.outputText = Text(self.outputFrame, height=15)
+        self.outputText.pack(side="left",fill="both",expand=True)
+        # Create Output Scrollbar
+        self.outputScroll = Scrollbar(self.outputFrame)
+        self.outputText.config(yscrollcommand=self.outputScroll.set)
+        self.outputScroll.config(command=self.outputText.yview)
+        self.outputScroll.pack(side="right",fill="y")
         
         #Allow Column To Resize
         self.grid_columnconfigure(0,weight=1)
