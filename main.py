@@ -4,7 +4,7 @@ import Tkinter
 import tkMessageBox
 from Tkinter import *
 
-class PartName(Tkinter.Tk):
+class PartNamer(Tkinter.Tk):
     def __init__(self,parent):
         #Call Super's Constructor
         Tkinter.Tk.__init__(self,parent)
@@ -73,6 +73,6 @@ class PartName(Tkinter.Tk):
         tkMessageBox.showinfo("Error",message)
         
 if __name__ == "__main__":
-    app = PartName(None)
+    app = PartNamer(None)
     app.title("Part Name Generator")
     app.mainloop()
