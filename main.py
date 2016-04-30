@@ -1,4 +1,7 @@
+from PartNameGenerator import PartNameGenerator
+
 import Tkinter
+import tkMessageBox
 from Tkinter import *
 
 class PartName(Tkinter.Tk):
@@ -23,7 +26,8 @@ class PartName(Tkinter.Tk):
         self.typeLabel = Tkinter.Label(self,anchor="c",text="Part Type",fg="blue",bg="white")
         self.typeLabel.grid(column=1,row=1,columnspan=1,sticky="ew")
         #Create Manufacturer Entry
-        self.manufacturerEntry = Tkinter.Entry(self)
+        self.manufacturerVar = Tkinter.StringVar()
+        self.manufacturerEntry = Tkinter.Entry(self, textvariable=self.manufacturerVar)
         self.manufacturerEntry.grid(column=0,row=2,sticky="ew")
         self.manufacturerEntry.bind("<Return>",self.onPressEnter)
         #Create Type Option Menu
@@ -55,9 +59,18 @@ class PartName(Tkinter.Tk):
         
     def onButtonClick(self):
         print "ButtonClick", self.typeVar.get()
+        if not self.manufacturerVar.get() == "":
+            nameGenerator = PartNameGenerator(self.manufacturerVar.get(),"file")
+            self.outputText.delete(1.0,END)
+            self.outputText.insert(END,nameGenerator.generateName() + "\n")    
+        else:
+            self.showError("Manufacturer Cannot Be Blank")
         
     def onPressEnter(self,event):
         print "PressEnter"
+        
+    def showError(self, message):
+        tkMessageBox.showinfo("Error",message)
         
 if __name__ == "__main__":
     app = PartName(None)
