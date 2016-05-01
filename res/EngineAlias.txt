@@ -1,0 +1,10 @@
+Walrus
+Seal
+Narwhal
+Whale
+Dolphin
+Penguin
+Cormorant
+Petrel
+Falcon
+Eagle

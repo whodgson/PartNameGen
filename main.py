@@ -60,7 +60,7 @@ class PartNamer(Tkinter.Tk):
     def onButtonClick(self):
         print "ButtonClick", self.typeVar.get()
         if not self.manufacturerVar.get() == "":
-            nameGenerator = PartNameGenerator(self.manufacturerVar.get(),"file")
+            nameGenerator = PartNameGenerator(self.manufacturerVar.get(),self.typeVar.get())
             self.outputText.delete(1.0,END)
             self.outputText.insert(END,nameGenerator.generateName() + "\n")    
         else:
