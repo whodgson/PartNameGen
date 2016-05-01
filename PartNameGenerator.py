@@ -28,7 +28,7 @@ class PartNameGenerator:
         else:
             partNameSpec = "Part"
         #Return Generated Part Name
-        return partNameSerial + " " + partNameAlias + " " + partNameSpec
+        return partNameSerial + " '" + partNameAlias + "' " + partNameSpec
     
     def generateSerial(self,size):
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
