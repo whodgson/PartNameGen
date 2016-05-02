@@ -42,7 +42,7 @@ class PartNamer(Tkinter.Tk):
         self.typeMenu.config(width=20)
         self.typeMenu.grid(column=1,row=2,stick="ew")
         #Create Generate Button
-        self.generateButton = Tkinter.Button(self,text=u"Generate",command=self.onButtonClick)
+        self.generateButton = Tkinter.Button(self,text=u"Generate",command=self.onGenerateButtonClick)
         self.generateButton.grid(column=0,row=3,columnspan=2,sticky="ew")
         #Create Output Frame
         self.outputFrame = Frame(self)
@@ -50,25 +50,30 @@ class PartNamer(Tkinter.Tk):
         #Create Output Field
         self.outputText = Text(self.outputFrame, height=15)
         self.outputText.pack(side="left",fill="both",expand=True)
-        # Create Output Scrollbar
+        #Create Output Scrollbar
         self.outputScroll = Scrollbar(self.outputFrame)
         self.outputText.config(yscrollcommand=self.outputScroll.set)
         self.outputScroll.config(command=self.outputText.yview)
         self.outputScroll.pack(side="right",fill="y")
+        #Create Clear Button
+        self.clearButton = Tkinter.Button(self,text=u"Clear",command=self.onClearButtonClick)
+        self.clearButton.grid(column=0,row=5,columnspan=2,sticky="ew")
         
         #Allow Column To Resize
         self.grid_columnconfigure(0,weight=1)
         #Disallow H Resize, Disallow V Resize
         self.resizable(False,False)
         
-    def onButtonClick(self):
+    def onGenerateButtonClick(self):
         print "ButtonClick", self.typeVar.get()
         if not self.manufacturerVar.get() == "":
             nameGenerator = PartNameGenerator(self.manufacturerVar.get(),self.typeVar.get())
-            self.outputText.delete(1.0,END)
             self.outputText.insert(END,nameGenerator.generateName() + "\n")    
         else:
             self.showError("Manufacturer Cannot Be Blank")
+        
+    def onClearButtonClick(self):
+        self.outputText.delete(1.0,END)
         
     def onPressEnter(self,event):
         print "PressEnter"
