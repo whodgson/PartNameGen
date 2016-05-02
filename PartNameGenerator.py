@@ -14,7 +14,7 @@ class PartNameGenerator:
         partNameSpec = self.getSpec(self.typeName)
         #Return Generated Part Name
         if(partNameAlias != ""):
-            return partNameSerial + " " + partNameAlias + " " + partNameSpec
+            return partNameSerial + " '" + partNameAlias + "' " + partNameSpec
         else:
             return partNameSerial + " " + partNameSpec
     
@@ -30,7 +30,7 @@ class PartNameGenerator:
         if os.path.isfile("res/" + typeName + "Alias.txt"):
             with open("res/" + typeName + "Alias.txt") as file:
                 lines = file.read().splitlines()
-            return "'" + random.choice(lines) + "'"
+            return random.choice(lines)
         else:
             return ""
         

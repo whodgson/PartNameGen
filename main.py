@@ -1,5 +1,9 @@
 from PartNameGenerator import PartNameGenerator
 
+import os
+import os.path
+import string
+
 import Tkinter
 import tkMessageBox
 from Tkinter import *
@@ -31,7 +35,7 @@ class PartNamer(Tkinter.Tk):
         self.manufacturerEntry.grid(column=0,row=2,sticky="ew")
         self.manufacturerEntry.bind("<Return>",self.onPressEnter)
         #Create Type Option Menu
-        self.typeList = ["Engine","LF Tank","LFO Tank"]
+        self.typeList = self.getPartTypes()
         self.typeVar  = Tkinter.StringVar()
         self.typeVar.set("Engine")
         self.typeMenu = Tkinter.OptionMenu(self,self.typeVar,*self.typeList)
@@ -71,6 +75,15 @@ class PartNamer(Tkinter.Tk):
         
     def showError(self, message):
         tkMessageBox.showinfo("Error",message)
+        
+    def getPartTypes(self):
+        if os.path.isfile("res/Types.txt"):
+            with open("res/Types.txt") as file:
+                types = file.read().splitlines()
+            return types
+        else:
+            return ["Engine"]
+        
         
 if __name__ == "__main__":
     app = PartNamer(None)
