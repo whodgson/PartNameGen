@@ -1,4 +1,5 @@
 from PartNameGenerator import PartNameGenerator
+from PartDescGenerator import PartDescGenerator
 
 import os
 import os.path
@@ -67,8 +68,22 @@ class PartNamer(Tkinter.Tk):
     def onGenerateButtonClick(self):
         print "ButtonClick", self.typeVar.get()
         if not self.manufacturerVar.get() == "":
+            #Clear the output frame
+            self.outputText.delete(1.0,END)
+            #Create a new name generator
             nameGenerator = PartNameGenerator(self.manufacturerVar.get(),self.typeVar.get())
-            self.outputText.insert(END,nameGenerator.generateName() + "\n")    
+            #Get dictionary containing full name and name components
+            nameDict = nameGenerator.generateName()
+            name   = nameDict['name']
+            serial = nameDict['serial']
+            alias  = nameDict['alias']
+            spec   = nameDict['spec']
+            #Output full name to output frame
+            self.outputText.insert(END,name + "\n")
+            #Create a new description generator
+            descGenerator = PartDescGenerator(serial,alias,spec,self.manufacturerVar.get())
+            #Output full description to output frame
+            self.outputText.insert(END,descGenerator.generateDesc())
         else:
             self.showError("Manufacturer Cannot Be Blank")
         

@@ -14,9 +14,15 @@ class PartNameGenerator:
         partNameSpec = self.getSpec(self.typeName)
         #Return Generated Part Name
         if(partNameAlias != ""):
-            return partNameSerial + " '" + partNameAlias + "' " + partNameSpec
+            return {'name':partNameSerial + " '" + partNameAlias + "' " + partNameSpec\
+                   ,'serial':partNameSerial\
+                   ,'alias':partNameAlias\
+                   ,'spec':partNameSpec}
         else:
-            return partNameSerial + " " + partNameSpec
+            return {'name':partNameSerial + " " + partNameSpec\
+                   ,'serial':partNameSerial\
+                   ,'alias':""\
+                   ,'spec':partNameSpec}
     
     def generateAlphanumeric(self,size):
         chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
